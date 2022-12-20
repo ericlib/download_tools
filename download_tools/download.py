@@ -102,9 +102,12 @@ def download_str(content, save_dir, name=None, suffix='txt'):
     file = dir / file_name
 
     if not file.exists():
-        for encoding in ['utf-8','gbk']:
-            result_flag = _save_file(content, file, encoding='utf-8')
-            if result_flag: break
+        try:
+            for encoding in ['utf-8','gbk']:
+                result_flag = _save_file(content, file, encoding='utf-8')
+                if result_flag: break
+        except:
+            _save_file(content, file,  mode='w')
     else:
        print("文件已存在。") 
 
