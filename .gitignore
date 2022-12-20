@@ -1,6 +1,6 @@
 # 忽略编译文件夹
 build/
-dtools.egg-info/
+*.egg-info/
 dist/
 __pycache__/
 
