@@ -1,0 +1,11 @@
+# 忽略编译文件夹
+build/
+dtools.egg-info/
+dist/
+__pycache__/
+
+# 忽略jupyter
+.ipynb_checkpoints
+
+#忽略其他
+
