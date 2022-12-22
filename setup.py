@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="download_tools", # Replace with your own username
-    version="0.0.3",
+    version="0.0.4",
     author="eric",
     author_email="ericlib@aliyun.com",
     description="爬虫的一些工具。",
