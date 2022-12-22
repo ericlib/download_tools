@@ -113,7 +113,7 @@ def download_str(content, save_dir, name=None, suffix='txt'):
 
 def download_url(url, save_dir, name=None,  suffix=None, 
                 headers=None ,  type='get', post_data=None,
-                has_selenium='no', sleep_time=0, headless=True):
+                has_selenium='no', selenium_sleep_time=0, headless=True, sleep_time=0):
     """
     通过链接下载文件，文件名存在时不保存。
     Parameters
@@ -126,8 +126,12 @@ def download_url(url, save_dir, name=None,  suffix=None,
         文件名，默认None为url文件名
     suffix : str
         文件后缀，默认'txt'
+    sleep_time : int
+        下载一次休眠的秒数，默认0
     has_selenium : str {'both','only','no'}
         'no'不使用selenium, 'both'先requests不行再selenium，'only'只使用selenium
+    selenium_sleep_time : int
+        使用selenium时，等待页面加载的休眠时间，默认0
     Returns
     -------
     None
@@ -168,17 +172,19 @@ def download_url(url, save_dir, name=None,  suffix=None,
                     raise
                 elif has_selenium == 'both':
                     # 再使用selenium下载
-                    _selenium_get_file(url, save_dir, sleep_time=sleep_time, headless=headless)
+                    _selenium_get_file(url, save_dir, sleep_time=selenium_sleep_time, headless=headless)
 
                 else:
                     raise  
         else:
             # 只使用selenium下载
-            content = selenium_get(url, save_dir,sleep_time=sleep_time,headless=headless)
+            content = selenium_get(url, save_dir,sleep_time=selenium_sleep_time,headless=headless)
             if content != None:
                 _save_file(content.encode(), file, mode='wb')
+        time.sleep(sleep_time)  # 下载一次休眠时间
     else:
        print("文件已存在。")     
+
 
 
 
