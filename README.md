@@ -29,23 +29,34 @@ dt.download_url('https://www.baidu.com', save_dir=r'F:\test', name='baidu',suffi
 ```
 
 ```
-download_url(url, save_dir, name=None,  suffix=None, 
-            headers=None ,  type='get', post_data=None,
-            has_selenium='no', sleep_time=0, headless=True)
-
-参数：           
-url : str
-    链接
-save_dir : str
-    保存的文件夹路径
-name : str
-    文件名，默认None为url文件名
-suffix : str
-    文件后缀，默认'txt'
-type : str {'get','post'}
-    请求类型，使用'get'或 'post'加'post_data'
-has_selenium : str {'both','only','no'}
-    'no'不使用selenium, 'both'先requests不行再selenium，'only'只使用selenium
+def download_url(url, save_dir, name=None,  suffix=None, 
+                headers=None ,  type='get', post_data=None,
+                has_selenium='no', selenium_sleep_time=0, headless=True, sleep_time=0):
+    """
+    通过链接下载文件，文件名存在时不保存。
+    Parameters
+    ----------
+    url : str
+        链接
+    save_dir : str
+        保存的文件夹路径
+    name : str
+        文件名，默认None为url文件名
+    suffix : str
+        文件后缀，默认'txt'
+    sleep_time : int
+        下载一次休眠的秒数，默认0
+    has_selenium : str {'both','only','no'}
+        'no'不使用selenium, 'both'先requests不行再selenium，'only'只使用selenium
+    selenium_sleep_time : int
+        使用selenium时，等待页面加载的休眠时间，默认0
+    Returns
+    -------
+    None
+    Examples
+    --------
+    >>> download_url('https://www.baidu.com',r'F:\test') 
+    """    
 
 ```
 
